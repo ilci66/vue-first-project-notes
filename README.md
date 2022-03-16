@@ -51,3 +51,49 @@
     and use it like this:
     <span>{{ publishedBooksMessage }}</span>
 *   Use getter and setters without side effects and avoid mutating the computed value.
+*   We can pass an object to :class (short for v-bind:class) to dynamically toggle classes:
+    <div :class="{ active: isActive }"></div>
+    for multiple: 
+    <div :class="[activeClass, errorClass]"></div> 
+    this is also possible:
+    <div :class="[{ active: isActive }, errorClass]"></div>
+*   :style supports binding to JavaScript object values - it corresponds to an HTML element's style property:
+    data() {
+        return {
+            styleObject: {
+            color: 'red',
+            fontSize: '13px'
+            }
+        }
+    }
+    <div :style="styleObject"></div> (looks cleaner)
+*   We can bind :style to an array of multiple style objects. These objects will be merged and applied to the same element, seems useful:
+    <div :style="[baseStyles, overridingStyles]"></div>
+
+*   You can use the v-else directive to indicate an "else block" for v-if, logic behind is easy to see:
+    <button @click="awesome = !awesome">Toggle</button>
+    <h1 v-if="awesome">Vue is awesome!</h1>
+    <h1 v-else>Oh no 😢</h1>
+*   Else if logic is also possible:
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+*   "template" serves as an invisible wrapper, can be used to toggle a whole bunch of elements like this:
+    <template v-if="ok">
+    <h1>Title</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    </template>
+
+*   v-show directive only changes the display option so it still appaears on the DOM
+*   v-if is lazy, waits for the condition to be true or false
+*   Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. 
