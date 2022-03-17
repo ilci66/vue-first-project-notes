@@ -4,7 +4,8 @@
 *   Minimum amount of dom renders is handled like in the react, according to state changes (Virtual DOM)
 *   Using javascript expressions is ok (like in react) inside the mustache
 *   Vue has a lot to offer when it comes to handling user input, not that complicated either
-
+*   The lifecycyle methods work similar to react's I think, or can be mimicked easily
+*   Ref defnitiely works similarly
 
 ## Notes
 *   If you are using Vue to enhance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create multiple small application instances and mount them on the elements they are responsible for.
@@ -326,3 +327,25 @@
     <input v-model.trim="msg" />
 
 *   All lifecycle hooks are called with their **this** context pointing to the current active instance invoking it. Note this means you should avoid using arrow functions when declaring lifecycle hooks, as you won't be able to access the component instance via this if you do so. There are also other hooks which will be called at different stages of the instance's lifecycle, with the most commonly used being **mounted**, **updated**, and **unmounted**.
+
+*   with watch, we can watch for changes and implement a logic on what to do with those changes:
+    watch: {
+        // whenever question changes, this function will run, questing is v-model value
+        question(newQuestion, oldQuestion) {
+        if (newQuestion.indexOf('?') > -1) {
+            this.getAnswer()
+        }
+    }   
+
+*   watcher does shallow comparisons by default, add **deep: true** if you wanna make deep comparisons but it's costly.
+*   By default wathcer is lazy. We can force a watcher's callback to be executed immediately by declaring it using an object with a handler function and the **immediate: true** option
+*   If you want to access the DOM in a watcher callback after Vue has updated it, you need to specify the **flush: 'post'** option
+*   **this.$watch()** method is useful when you need to conditionally set up a watcher, or only watch something in response to user interaction. It also allows you to stop the watcher early.
+*   In the rare case where you need to stop a watcher before the owner component unmounts, the $watch() API returns a function for that : **unwatch()**
+
+*   The resulting ref is exposed on this.$refs, has to be mounted first (has to exist on DOM):
+    mounted() {
+        this.$refs.input.focus()
+    }
+    <input ref="input" />
+*   All the ref defined will exists in the refs so I should be able to reach all of them thorugh refs
