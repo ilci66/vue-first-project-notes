@@ -1,7 +1,7 @@
 <script setup>
-  import allDigimonsVue from './components/allDigimons.vue';
   import MyCollectionVue from './components/MyCollection.vue';
-  import DigimonCardVue from './components/DigimonCard.vue';
+  import DigimonsListVue from './components/DigimonsList.vue';
+  import CurrentDigimonVue from './components/CurrentDigimon.vue'
 </script>
 
 <template>
@@ -13,11 +13,12 @@
   </header>
 
   <main>
-    <allDigimonsVue />
-    <!-- <div class="all-digimons">Replace this with all the digimons, can be a div that can be scrolled</div> -->
-    
-    <MyCollectionVue />
-    <!-- <div class="my-collecton">replace it with favourites they will appear as cards, maybe make it look like a deck of cards or something</div> -->
+    <div class="container">
+
+      <DigimonsListVue />
+      <CurrentDigimonVue />
+      <MyCollectionVue />
+    </div>
 
   </main>
 </template>
@@ -32,5 +33,7 @@
   h1 {
     font-size: 3rem;
   }
+  .container {
 
+  }
 </style>

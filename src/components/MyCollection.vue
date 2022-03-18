@@ -1,10 +1,18 @@
 <template>
+  <div class="collection-container">
 
+    <DigimonCardVue v-for="digimon in digimons" :key="digimon.name"/>
+  </div>
 
 </template>
 
 <script>
+  import DigimonCardVue from "./DigimonCard.vue"
+
   export default {
+    components:{
+      DigimonCardVue
+    },
     data() {
       return {
         digimons: [
@@ -20,5 +28,7 @@
 </script>
 
 <style scoped>
-
+  .collection-container {
+    grid-template-columns: 1 / -1 ;
+  }
 </style>
