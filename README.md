@@ -1,4 +1,6 @@
 # My Notes
+## Why I take Notes
+I like taking notes while I'm studying I feel like I can grasp better if I use my own words describing what I'm studying
 ## First impressions
 *   Mounting feels like reacts but the syntax is very different 
 *   Minimum amount of dom renders is handled like in the react, according to state changes (Virtual DOM)
@@ -6,8 +8,10 @@
 *   Vue has a lot to offer when it comes to handling user input, not that complicated either
 *   The lifecycyle methods work similar to react's I think, or can be mimicked easily
 *   Ref defnitiely works similarly
+*   Components and passing props are easy to understand, v-for looks helpful for multiple
 
-## Notes
+
+### Notes
 *   If you are using Vue to enhance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create multiple small application instances and mount them on the elements they are responsible for.
 
 *   All Vue templates are syntactically valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
@@ -349,3 +353,35 @@
     }
     <input ref="input" />
 *   All the ref defined will exists in the refs so I should be able to reach all of them thorugh refs
+*   adding v-for creates a components for each post in posts and (passing the title as a prop here dynamically with v-bind):
+    <BlogPost
+        v-for="post in posts"
+        :key="post.id"
+        :title="post.title"
+    />
+*   The built-in **$emit** method allows us to listen for spesific events emitted from the children
+    <BlogPost
+    ...
+    @enlarge-text="postFontSize += 0.1"
+    />
+    <!-- BlogPost.vue, omitting <script> -->
+    <template>
+    <div class="blog-post">
+        <h4>{{ title }}</h4>
+        <button @click="$emit('enlarge-text')">Enlarge text</button>
+    </div>
+    </template>
+
+*   Use the <slot> as a placeholder where we want the content to go (like {children} in react):
+    <template>
+    <div class="alert-box">
+        <strong>Error!</strong>
+        <slot />
+    </div>
+    </template>
+
+*   When switching between multiple components with **<component :is="...">**, a component will be unmounted when it is switched away from: 
+    <!-- Component changes when currentTab changes -->
+    <component :is="currentTab"></component>
+
+*   When used on native HTML elements, the value of is must be prefixed with vue: in order to be interpreted as a Vue component.
