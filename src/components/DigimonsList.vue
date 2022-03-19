@@ -10,28 +10,30 @@
         <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
       </p>
   </div> 
+  <CurrentDigimonVue :selected="this.selected" />
 </template>
 
 <script>
   import SearchVue from './Search.vue'
+  import CurrentDigimonVue from './CurrentDigimon.vue'
 
   export default {
     methods: {
       handleDigimonClick(event){
-        // console.log(event.target.id)
-        let selected = this.allDigimons.filter(ele => ele.name === event.target.id)
-        this.selectedDigimon = selected;
+        this.selected = this.allDigimons.filter(ele => ele.name === event.target.id)
       }
     },
     components: {
-      SearchVue
+      SearchVue,
+      CurrentDigimonVue
     },
     data() {
       return {
         allDigimons: [],
-        selectedDigimon: undefined,
+        selected: undefined,
       }
     },
+    emits: ["testingEmit"],
     mounted() {
       fetch('https://digimon-api.herokuapp.com/api/digimon')
       .then(res => res.json())

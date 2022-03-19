@@ -1,14 +1,16 @@
 <template>
   <div class="card">
+    <h3 v-if="digimon">{{digimon.name}}</h3>
     <img class="card-image" src="https://digimon.shadowsmith.com/img/otamamon.jpg" alt="cool digimon" srcset="">
     <h3 class="digimon-name">some digimon</h3>
     <p class="digimon-level">digimon level</p>
+    
   </div>
 </template>
 
 <script>
   export default {
-      
+    props:["digimon"]
   }
 </script>
 

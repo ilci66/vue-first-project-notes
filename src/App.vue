@@ -1,7 +1,7 @@
 <script setup>
   import MyCollectionVue from './components/MyCollection.vue';
   import DigimonsListVue from './components/DigimonsList.vue';
-  import CurrentDigimonVue from './components/CurrentDigimon.vue'
+
 </script>
 
 <template>
@@ -16,7 +16,6 @@
     <div class="container">
 
       <DigimonsListVue />
-      <CurrentDigimonVue />
       <MyCollectionVue />
     </div>
 

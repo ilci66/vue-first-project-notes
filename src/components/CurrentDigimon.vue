@@ -1,12 +1,17 @@
 <template>
-  <div class="current-digimon-container">
-    the current pokemon
+  <div class="current-digimon-container" @click="isSelected">
+    <img class="selected-digimon-img" v-if="selected" :src="selected['0'].img" alt="">
+    <p v-if="selected">{{selected["0"].name}}</p>
+    <p v-if="selected">{{selected["0"].level}}</p>
   </div>
 </template>
 
 <script>
   export default {
-      
+    methods: {
+      isSelected(){ console.log("is slected", this.selected)}
+    },
+    props: ["selected"]
   }
 </script>
 
@@ -20,6 +25,10 @@
 @media (max-width: 600px) {
   .current-digimon-container {
     width: 100%;
+    margin-top: 10px;
   }
+}
+.selected-digimon-img{
+  height: 200px;
 }
 </style>
