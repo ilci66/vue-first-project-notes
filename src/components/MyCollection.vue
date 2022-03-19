@@ -1,6 +1,5 @@
 <template>
   <div class="collection-container">
-
     <DigimonCardVue v-for="digimon in digimons" :key="digimon.name"/>
   </div>
 
@@ -29,6 +28,10 @@
 
 <style scoped>
   .collection-container {
-    grid-template-columns: 1 / -1 ;
+    background: rgba(255,255,255,0.2);
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
   }
 </style>

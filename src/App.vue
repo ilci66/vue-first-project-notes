@@ -34,6 +34,8 @@
     font-size: 3rem;
   }
   .container {
-
+    display: flex;
+    flex-wrap:wrap;
+    justify-items: center;
   }
 </style>

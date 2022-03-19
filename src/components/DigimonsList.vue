@@ -1,9 +1,14 @@
 <template>
   <SearchVue />
   <div class="digimons-list-container">
-    <ul>
-      <li class="digimons-list" v-for="digimon in allDigimons" :key="digimon.name">Name: {{digimon.name}}, Level: {{digimon.level}}</li>
-    </ul>
+      <p 
+        @click="handleDigimonClick" 
+        class="digimons-list" 
+        v-for="digimon in allDigimons" :key="digimon.name"
+        :id="digimon.name"
+      >
+        <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
+      </p>
   </div> 
 </template>
 
@@ -11,12 +16,20 @@
   import SearchVue from './Search.vue'
 
   export default {
+    methods: {
+      handleDigimonClick(event){
+        // console.log(event.target.id)
+        let selected = this.allDigimons.filter(ele => ele.name === event.target.id)
+        this.selectedDigimon = selected;
+      }
+    },
     components: {
       SearchVue
     },
     data() {
       return {
-        allDigimons: []
+        allDigimons: [],
+        selectedDigimon: undefined,
       }
     },
     mounted() {
@@ -33,20 +46,29 @@
 
 <style scoped>
   .digimons-list{
-    margin: 0;
-    padding: 0;
-    list-style:none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 1.2rem;
-
+    width: 100%;
+    text-align: center;
+  }
+  .digimons-list:hover {
+    background: rgba(0,0,0,.25); 
+    cursor: pointer;
   }
 
   .digimons-list-container {
     max-height: 300px;
-    max-width: 600px;
+    width: 60%;
     overflow: scroll;
     overflow-x :hidden;
-    background: rgb(236, 210, 228);
+    background: rgba(29, 15, 15, 0.4);
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
+  @media (max-width: 600px){
+    .digimons-list-container{
+      width: 100%;
+    }
+  };
 </style>
