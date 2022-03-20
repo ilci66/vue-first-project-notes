@@ -1,14 +1,15 @@
 <template>
   <SearchVue />
   <div class="digimons-list-container">
-      <p 
-        @click="handleDigimonClick" 
-        class="digimons-list" 
-        v-for="digimon in allDigimons" :key="digimon.name"
-        :id="digimon.name"
-      >
-        <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
-      </p>
+    <p 
+      @click="handleDigimonClick" 
+      class="digimons-list" 
+      v-for="digimon in allDigimons" :key="digimon.name"
+      :id="digimon.name"
+    >
+      <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
+      <button @click="$emit('add', 'a')">asdasd</button>  
+    </p>
   </div> 
   <CurrentDigimonVue :selected="this.selected" />
 </template>
@@ -23,6 +24,7 @@
         this.selected = this.allDigimons.filter(ele => ele.name === event.target.id)
       }
     },
+    props:["add"],
     components: {
       SearchVue,
       CurrentDigimonVue
@@ -60,17 +62,15 @@
 
   .digimons-list-container {
     max-height: 300px;
-    width: 60%;
     overflow: scroll;
     overflow-x :hidden;
     background: rgba(29, 15, 15, 0.4);
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
   }
   @media (max-width: 600px){
     .digimons-list-container{
-      width: 100%;
+      grid-column: 1 / -1;
     }
   };
 </style>

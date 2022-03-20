@@ -1,7 +1,5 @@
 <script setup>
-  import MyCollectionVue from './components/MyCollection.vue';
-  import DigimonsListVue from './components/DigimonsList.vue';
-
+  import WrapperVue from './components/Wrapper.vue';
 </script>
 
 <template>
@@ -13,11 +11,7 @@
   </header>
 
   <main>
-    <div class="container">
-
-      <DigimonsListVue />
-      <MyCollectionVue />
-    </div>
+    <WrapperVue />
 
   </main>
 </template>

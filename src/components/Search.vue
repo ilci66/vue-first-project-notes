@@ -16,7 +16,7 @@
 
 <style scoped>
   .search-digimon {
-    width: 100%;
+    grid-column: 1 / -1;
     padding: 10px 5px;
     border: none;
     box-shadow: 0 0 8px white;

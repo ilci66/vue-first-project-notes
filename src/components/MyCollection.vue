@@ -29,9 +29,12 @@
 <style scoped>
   .collection-container {
     background: rgba(255,255,255,0.2);
-    width: 100%;
+    grid-column: 1 / -1;
     margin-top: 20px;
     display: flex;
     flex-direction: row;
+  }
+  @media (max-width: 600px) {
+    
   }
 </style>
