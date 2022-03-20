@@ -1,19 +1,34 @@
 <template>
     <div class="wrapper-component">
-        <DigimonsListVue />
-        <MyCollectionVue />
+        <DigimonsListVue @add-to-list="addToList"/>
+        <MyCollectionVue :collection="this.collection" />
     </div>
 </template>
 
 <script>
 import DigimonsListVue from "./DigimonsList.vue"
 import MyCollectionVue from "./MyCollection.vue"
-    export default {
-        components: {
-            DigimonsListVue,
-            MyCollectionVue
-        },
-    }
+  export default {
+    data(){
+      return {
+        collection: []
+      }
+    },
+    methods:{
+      addToList(obj){
+        console.log("to add ==>", obj)
+        if(this.collection.length < 5 ) {
+          this.collection = [...this.collection, obj];
+          console.log("cllection",this.collection)
+        }
+      
+      }
+    },
+    components: {
+      DigimonsListVue,
+      MyCollectionVue
+    },
+  }
 </script>
 
 <style scoped>

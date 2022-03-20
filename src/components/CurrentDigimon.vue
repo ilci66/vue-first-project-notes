@@ -1,7 +1,8 @@
 <template>
   <div class="current-digimon-container" >
-    <img class="selected-digimon-img" v-if="selected" :src="selected['0'].img" alt="">
+    <img lazy class="selected-digimon-img" v-if="selected" :src="selected['0'].img" alt="some digimon">
     <p v-if="selected">{{selected["0"].name}}</p>
+    <p v-if="!selected">Digimon will appear here with the image</p>
     <p v-if="selected">{{selected["0"].level}}</p>
     <button @click="$emit('add', selected['0'])" class="pokemon-add-button" v-if="selected">Add</button>
   </div>
@@ -10,9 +11,8 @@
 <script>
   export default {
     methods: {
-      // isSelected(){ console.log("is slected", this.selected)}
     },
-    props: ["selected", "add"]
+    props: ["selected", "toAdd"]
   }
 </script>
 
@@ -20,7 +20,6 @@
 .current-digimon-container {
   height: 300px;
   min-width: 240px;
-  background: rgba(0,0,0,0.25);
   display: flex;
   flex-direction: column;
   align-items: center;

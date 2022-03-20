@@ -8,10 +8,10 @@
       :id="digimon.name"
     >
       <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
-      <button @click="$emit('add', 'a')">asdasd</button>  
     </p>
   </div> 
-  <CurrentDigimonVue :selected="this.selected" />
+  <!-- <CurrentDigimonVue :selected="this.selected" @add="add"/> -->
+  <CurrentDigimonVue :selected="this.selected" @add="(a) => $emit('addToList', a)"/>
 </template>
 
 <script>
@@ -42,7 +42,11 @@
         }
       }
     },
-    props:["add"],
+    emits:["addToList"],
+    setup(props, {emit}){
+      console.log("props", props)
+    },
+    // props:["add"],
     components: {
       SearchVue,
       CurrentDigimonVue
