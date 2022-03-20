@@ -1,6 +1,6 @@
 <template>
-  <SearchVue />
-  <div class="digimons-list-container">
+  <SearchVue @searchChange="handleSearch" />
+  <div class="digimons-list-container" v-if="filteredDigimons === undefined" >
     <p 
       @click="handleDigimonClick" 
       class="digimons-list" 
@@ -11,6 +11,28 @@
       <button @click="$emit('add', 'a')">asdasd</button>  
     </p>
   </div> 
+  <div class="digimons-list-container" v-if="filteredDigimons" >
+    <p 
+      @click="handleDigimonClick" 
+      class="digimons-list" 
+      v-for="digimon in filteredDigimons" :key="digimon.name"
+      :id="digimon.name"
+    >
+      <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
+      <button @click="$emit('add', 'a')">asdasd</button>  
+    </p>
+  </div> 
+  <div class="digimons-list-container" v-if="filteredDigimons" >
+    <p 
+      @click="handleDigimonClick" 
+      class="digimons-list" 
+      v-for="digimon in filteredDigimons" :key="digimon.name"
+      :id="digimon.name"
+    >
+      <i style="font-size: .9rem"> Name:</i> <b>{{digimon.name}}</b> ---- <i style="font-size: .9rem">Level:</i> {{digimon.level}}
+      <button @click="$emit('add', 'a')">asdasd</button>  
+    </p>
+  </div>
   <CurrentDigimonVue :selected="this.selected" />
 </template>
 
@@ -20,8 +42,21 @@
 
   export default {
     methods: {
+      handleFetchAll(){
+        fetch('https://digimon-api.herokuapp.com/api/digimon')
+          .then(res => res.json())
+          .then(data => {
+            this.allDigimons = data; 
+            console.log(data)
+            this.filteredDigimons = undefined;
+          })
+      },
       handleDigimonClick(event){
         this.selected = this.allDigimons.filter(ele => ele.name === event.target.id)
+      },
+      handleSearch(event){
+        console.log("logging evet",event)
+        this.filteredDigimons = this.allDigimons.filter(d => d.name === event)
       }
     },
     props:["add"],
@@ -32,18 +67,19 @@
     data() {
       return {
         allDigimons: [],
+        filteredDigimons: undefined,
         selected: undefined,
       }
     },
     emits: ["testingEmit"],
     mounted() {
-      fetch('https://digimon-api.herokuapp.com/api/digimon')
-      .then(res => res.json())
-      .then(data => {
-        this.allDigimons = data; 
-        console.log(data)
-      })
-
+      // fetch('https://digimon-api.herokuapp.com/api/digimon')
+      // .then(res => res.json())
+      // .then(data => {
+      //   this.allDigimons = data; 
+      //   console.log(data)
+      // })
+      this.handleFetchAll()
     }
   }
 </script>

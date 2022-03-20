@@ -2,13 +2,15 @@
   <input 
     class="search-digimon" 
     type="text"
-    placeholder="Search any digimon by name"
+    placeholder="Type in the name and hit enter"
     ref="searchbar"
+    @change="$emit('searchChange', $event.target.value)"
     >
 </template>
 
 <script>
   export default {
+
     mounted(){
     }
   }
