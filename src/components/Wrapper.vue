@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper-component">
         <DigimonsListVue @add-to-list="addToList"/>
-        <MyCollectionVue :collection="this.collection" />
+        <MyCollectionVue :collection="this.collection" @remove-from-list="removeFromList" />
     </div>
 </template>
 
@@ -21,7 +21,10 @@ import MyCollectionVue from "./MyCollection.vue"
           this.collection = [...this.collection, obj];
           console.log("cllection",this.collection)
         }
-      
+      },
+      removeFromList(name){
+        console.log('to delete', name)
+        this.collection = [...this.collection.filter(d => d.name !== name)]
       }
     },
     components: {

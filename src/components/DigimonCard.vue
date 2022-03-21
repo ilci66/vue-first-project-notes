@@ -1,10 +1,9 @@
 <template>
   <div class="card">
-    <h3 v-if="digimon">{{digimon.name}}</h3>
-    <img class="card-image" src="https://digimon.shadowsmith.com/img/otamamon.jpg" alt="cool digimon" srcset="">
-    <h3 class="digimon-name">some digimon</h3>
-    <p class="digimon-level">digimon level</p>
-    
+    <img class="card-image" :src="digimon.img" alt="cool digimon">
+    <h3 class="digimon-name">{{digimon.name}}</h3>
+    <p class="digimon-level">{{digimon.level}}</p>
+    <button @click="$emit('remove', digimon.name)" class="remove-button">Remove</button>
   </div>
 </template>
 
@@ -31,5 +30,20 @@
   }
   .card-image{
     width: 80%;
+  }
+  .remove-button{
+    border: none;
+    padding: 5px;
+    width: 100%;
+    background: rgb(173, 8, 8);
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    transition: 0.4s;
+  }
+  .remove-button:hover{
+    box-shadow: 0 0 16px rgb(250, 25, 25);
+    cursor: pointer;
   }
 </style>

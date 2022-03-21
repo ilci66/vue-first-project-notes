@@ -1,6 +1,6 @@
 <template>
   <div class="collection-container">
-    <DigimonCardVue v-for="digimon in digimons" :key="digimon.name"/>
+    <DigimonCardVue v-for="digimon in collection" :key="digimon.name" :digimon="digimon" @remove="(a) => $emit('removeFromList', a)"/>
   </div>
 
 </template>
@@ -12,6 +12,14 @@
     components:{
       DigimonCardVue
     },
+    emits:["removeFromList"],
+    props: ["collection"],
+    methods:{
+      checker(){
+        return console.log("collection in collection",this.collection)
+      },
+    },
+    
     data() {
       return {
         digimons: [
@@ -32,7 +40,9 @@
     grid-column: 1 / -1;
     margin-top: 20px;
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
+    margin-bottom: 50px;
   }
   @media (max-width: 600px) {
     
