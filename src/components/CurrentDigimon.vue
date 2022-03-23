@@ -1,9 +1,8 @@
 <template>
-  <div class="current-digimon-container" >
-    <img lazy class="selected-digimon-img" v-if="selected" :src="selected['0'].img" alt="some digimon">
-    <p v-if="selected">{{selected["0"].name}}</p>
-    <p v-if="!selected">Digimon will appear here with the image</p>
-    <p v-if="selected">{{selected["0"].level}}</p>
+  <div v-if="selected" class="current-digimon-container" >
+    <img lazy class="selected-digimon-img" :src="selected['0'].img" alt="some digimon">
+    <p>{{selected["0"].name}}</p>
+    <p>{{selected["0"].level}}</p>
     <button @click="$emit('add', selected['0'])" class="pokemon-add-button" v-if="selected">Add</button>
   </div>
 </template>

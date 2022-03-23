@@ -30,6 +30,7 @@
       },
       handleDigimonClick(event){
         this.selected = this.allDigimons.filter(ele => ele.name === event.target.id)
+        console.log(this.selected)
       },
       handleSearch(event){
         console.log("logging evet",event)

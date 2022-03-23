@@ -9,8 +9,15 @@ I like taking notes while I'm studying I feel like I can grasp better if I use m
 *   The lifecycyle methods work similar to react's I think, or can be mimicked easily
 *   Ref defnitiely works similarly
 *   Components and passing props are easy to understand, v-for looks helpful for multiple
-
-
+*   There is a lot more to v-model than I thought.
+*   slot is like {children} in react but defaults can be set, and can be targeted as well nice
+*   Provide and inject can replace the prop drilling i did for the digimon collection list, but looks like i would be useing emits again
+*   provide and inject only works for passing props
+*   async component options could prevent the error in my app that is cause by image tag not having a source
+*   vue offeres built-in transitions which is very innovative
+*   with the help of keepalive component, states persist in componenets that aren't used, awesome, just wrap your dynmaic component with it
+*   using the store and reactive approach for state management works much better for the digimon card updates, check state managemnt later when writing the blog as well
+*   vitest appears to be the best solution for testing
 ### Notes
 *   If you are using Vue to enhance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create multiple small application instances and mount them on the elements they are responsible for.
 
